@@ -2,7 +2,7 @@ version: '3'
 services:
   nginx:
     container_name: "nginx"
-    image: nginx:alpine
+    build: ./docker/nginx
     ports:
       - "80:80"
     volumes:
@@ -15,7 +15,7 @@ services:
       - ./src:/var/www/html
   mysql:
     container_name: "mysql"
-    image: mysql:5.7
+    build: ./docker/mysql
     ports:
       - "3306:3306"
     volumes:

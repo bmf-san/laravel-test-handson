@@ -3,6 +3,11 @@ This is handson for test of laravel
 
 # Get Started
 ```
+cd 
+cp .env.example .env 
+```
+
+```
 docker-compose build
 docker-compose up -d
 ```
