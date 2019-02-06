@@ -11,22 +11,27 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('home', 'HomeController@index');
 
-Route::get('/home', 'HomeController@index');
+ // Authentication Routes...
+Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+Route::post('login', 'Auth\LoginController@login');
+Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
-Route::get('/login', 'Auth\LoginController@showLoginForm');
-Route::post('/login', 'Auth\LoginController@login');
-Route::post('/logout', 'Auth\LoginController@logout');
+// Registration Routes...
+Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+Route::post('register', 'Auth\RegisterController@register');
 
-Route::post('/password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
-Route::get('/password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm');
-Route::post('/password/reset', 'Auth\ResetPasswordController@reset');
-Route::get('/password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
+// Password Reset Routes...
+Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
+Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
-Route::get('/register', 'Auth\RegisterController@showRegistrationForm');
-Route::post('/register', 'Auth\RegisterController@register');
-
-
+Route::get('post', 'PostController@index');
+Route::get('post/create', 'PostController@create');
+Route::get('post/{id}', 'PostController@show');
+Route::post('post/store', 'PostController@store');
+Route::get('post/edit/{id}', 'PostController@edit');
+Route::post('post/update/{id}', 'PostController@update');
+Route::delete('post/delete/{id}', 'PostController@destroy');
