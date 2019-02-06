@@ -17,6 +17,9 @@ Add hosts settings to /etc/hosts
 127.0.0.1 laravel-test-handson
 ```
 
+# Run tests
+`composer tes t`
+
 # License
 This project is licensed under the terms of the MIT license.
 
