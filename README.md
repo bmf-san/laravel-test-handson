@@ -1,5 +1,5 @@
 # laravel-test-handson
-This is a handson for test of laravel.
+This is a handson for feature test of laravel.
 
 # Get Started
 ```
