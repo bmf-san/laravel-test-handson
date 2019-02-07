@@ -1,16 +1,17 @@
 <?php
 
-use Tests\Feature;
-use Tests\TestCase;
 use App\User;
 
-class AuthTest extends TestCase
+class ExampleTest extends TestCase
 {
     public function testApplication()
     {
-        $user = factory(User::class)->create();
+      $user = factory(User::class)->create();
 
-        $response = $this->actingAs($user)
-                         ->get('/');
+      $this->visit('/login')  // FIXME visit is not exists in 5.7
+           ->type($user->email, 'email')
+           ->type('secret', 'password')
+           ->press('ログイン')
+           ->seePageIs('/home');
     }
 }
