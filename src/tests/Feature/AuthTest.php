@@ -1,17 +1,20 @@
 <?php
 
+use Tests\TestCase;
+use Illuminate\Foundation\Testing\WithoutMiddleware;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use App\User;
 
-class ExampleTest extends TestCase
+class AuthTest extends TestCase
 {
     public function testApplication()
     {
       $user = factory(User::class)->create();
 
-      $this->visit('/login')  // FIXME visit is not exists in 5.7
+      $this->visit('/login')
            ->type($user->email, 'email')
            ->type('secret', 'password')
-           ->press('ログイン')
+           ->press('Login')
            ->seePageIs('/home');
     }
 }
