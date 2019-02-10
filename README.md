@@ -18,7 +18,7 @@ Add hosts settings to /etc/hosts
 ```
 
 # Run tests
-`composer tes t`
+`composer test`
 
 # License
 This project is licensed under the terms of the MIT license.
