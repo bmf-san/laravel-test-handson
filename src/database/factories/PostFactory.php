@@ -14,10 +14,10 @@ use App\User;
 |
 */
 
-$factory->define(App\User::class, function (Faker $faker) {
+$factory->define(App\Post::class, function (Faker $faker) {
     return [
         'title' => $faker->word,
         'body' => $faker->sentence,
-        'user_id' => User::create(),
+        'user_id' => factory(User::class)->create(),
     ];
 });
