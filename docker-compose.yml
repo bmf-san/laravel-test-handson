@@ -7,22 +7,34 @@ services:
       - "80:80"
     volumes:
       - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
-      - ./src:/var/www/html
+      - ./src:/var/www/html:cached
   php:
     container_name: "php"
     build: ./docker/php
     volumes:
-      - ./src:/var/www/html
+      - ./src:/var/www/html:delegated
   mysql:
     container_name: "mysql"
     build: ./docker/mysql
     ports:
       - "3306:3306"
     volumes:
-      - mysql_db:/var/lib/mysql
+      - mysql_db:/var/lib/mysql:delegated
     environment:
       - MYSQL_ROOT_PASSWORD=password
       - MYSQL_DATABASE=laravel
+  mysql_test:
+    container_name: "mysql_test"
+    build: ./docker/mysql
+    ports:
+        - "3305:3306"
+    volumes:
+      - mysql_test_db:/var/lib/mysql:delegated
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=laravel_test
 volumes:
   mysql_db:
+    driver: local
+  mysql_test_db:
     driver: local
