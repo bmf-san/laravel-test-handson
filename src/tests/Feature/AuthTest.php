@@ -10,15 +10,6 @@ class AuthTest extends TestCase
 {
     use DatabaseMigrations, DatabaseTransactions;
     
-    public function testLogout()
-    {
-      $user = factory(User::class)->create();
-    
-      $this->actingAs($user)
-            ->visit('/logout')
-            ->seePageIs('/login');
-    }
-    
     public function testLogin()
     {
       $user = factory(User::class)->create();
